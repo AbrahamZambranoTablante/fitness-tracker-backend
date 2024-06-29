@@ -6,4 +6,14 @@ workout.get("/", (req, res) => {
     res.status(200).send(workoutArray);
 });
 
+workout.get("/:id", (req, res) => {
+    const { id } = req.params;
+    const workout = workoutArray.find(workout => workout.id === +id);
+    if(workout){
+        res.status(200).json(workout);
+    } else {
+        res.status(404).send(`<h1>workout ${id} not found mamaguebazo</h1>`);
+    }
+})
+
 module.exports = workout;
